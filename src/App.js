@@ -1,5 +1,7 @@
+import WebcamCapture from './components/WebcamCapture';
+
 const App = () => {
-  return <div>App</div>;
+  return <WebcamCapture />;
 };
 
 export default App;
