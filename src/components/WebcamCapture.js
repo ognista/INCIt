@@ -16,30 +16,38 @@ const WebcamCapture = () => {
     <>
       <h1>Here you can take a photo</h1>
       <div>
-        <Webcam
-          ref={webcamRef}
-          audio={false}
-          screenshotFormat='image/jpeg'
-          videoConstraints={videoConstraints}
-        />
+        {photo === '' ? (
+          <Webcam
+            ref={webcamRef}
+            audio={false}
+            screenshotFormat='image/jpeg'
+            videoConstraints={videoConstraints}
+          />
+        ) : (
+          <img src={photo} alt='' />
+        )}
       </div>
-      <img src={photo} alt='' />
-      <button
-        onClick={(event) => {
-          event.preventDefault();
-          capture();
-        }}
-      >
-        Take a photo
-      </button>
-      <button
-        onClick={(event) => {
-          event.preventDefault();
-          setPhoto();
-        }}
-      >
-        Retake
-      </button>
+      <div>
+        {photo === '' ? (
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              capture();
+            }}
+          >
+            Take a photo
+          </button>
+        ) : (
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              setPhoto('');
+            }}
+          >
+            Retake
+          </button>
+        )}
+      </div>
     </>
   );
 };
