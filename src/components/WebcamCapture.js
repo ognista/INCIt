@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 
 const videoConstraints = {
-  facingMode: { exact: 'environment' },
+  facingMode: 'environment',
 };
 
 const WebcamCapture = () => {
