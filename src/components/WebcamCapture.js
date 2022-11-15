@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';
+import Tesseract from 'tesseract.js';
 
 const videoConstraints = {
   facingMode: 'environment',
@@ -11,6 +12,8 @@ const WebcamCapture = () => {
   const webcamRef = useRef(null);
 
   const capture = () => setPhoto(webcamRef.current.getScreenshot());
+
+  Tesseract.recognize(photo, 'eng', { logger: (m) => console.log(m) });
 
   return (
     <>
