@@ -8,12 +8,17 @@ const videoConstraints = {
 
 const WebcamCapture = () => {
   const [photo, setPhoto] = useState('');
+  const [text, setText] = useState('');
 
   const webcamRef = useRef(null);
 
   const capture = () => setPhoto(webcamRef.current.getScreenshot());
 
-  Tesseract.recognize(photo, 'eng', { logger: (m) => console.log(m) });
+  const convertPhotoToText = () => {
+    Tesseract.recognize(photo, 'eng', { logger: (m) => console.log(m) })
+      .catch((error) => console.log(error))
+      .then((result) => setText(result.data.text));
+  };
 
   return (
     <>
@@ -51,6 +56,8 @@ const WebcamCapture = () => {
           </button>
         )}
       </div>
+      <button onClick={convertPhotoToText}>Convert to text</button>
+      <h2>Your text output is: {text}</h2>
     </>
   );
 };
